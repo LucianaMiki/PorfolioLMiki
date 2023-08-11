@@ -78,7 +78,7 @@ export default function Projects(props) {
                 heading={"Login Project"}
                 repository={"https://github.com/LucianaMiki/login-frontend"}
                 link={'https://loginlucianamiki.netlify.app/'}
-                description={'A login and register screen'}
+                description={'A login and register screen with React and NodeJS'}
             />
         </div>
     ];
@@ -90,7 +90,7 @@ export default function Projects(props) {
                 heading={"Projeto de Login"}
                 repository={"https://github.com/LucianaMiki/login-frontend"}
                 link={'https://loginlucianamiki.netlify.app/'}
-                description={'Tela de login e registro'}
+                description={'Tela de login e registro com as tecnologias React e NodeJS'}
             />
         </div>
     ];
