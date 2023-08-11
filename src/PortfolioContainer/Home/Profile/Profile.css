@@ -98,7 +98,7 @@
         font-size: 20px;
     }
 
-    .profile0details-role .primary-text{
+    .profile-details-role .primary-text{
         font-size: 12px;
     }
 
@@ -107,6 +107,11 @@
         padding: 11px 0;
         z-index: 700;
     }
+
+    .profile-options, .profile-details-role {
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 910px) {
@@ -114,6 +119,11 @@
         height: 320px;
         width: 320px;
         margin: 0 0 0 4px;
+    }
+
+    .profile-options, .profile-details-role {
+        justify-content: center;
+        text-align: center;
     }
 }
 
@@ -141,6 +151,7 @@
     }
 
     .profile-options, .profile-details-role {
+        justify-content: center;
         text-align: center;
     }
 }
@@ -154,5 +165,10 @@
 
     .profile-details{
         width: 90%;
+    }
+
+    .profile-options, .profile-details-role {
+        justify-content: center;
+        text-align: center;
     }
 }

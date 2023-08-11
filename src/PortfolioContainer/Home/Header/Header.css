@@ -12,7 +12,13 @@
     width: 70%;
     color: var(--white);
   }
-  .header-logo {
+  .header-logo{
+    margin-top: 40px;
+    display: contents;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-logo-name {
     font-size: 50px;
     font-family: "Poppins ExtraBold";
     color: var(--white);
@@ -83,5 +89,19 @@
       left: 0;
       opacity: 1;
     }
+
+    .header-logo{
+      display: block !important;
+      margin-top: 0px !important;
+      justify-content: center;
+      align-items: center;
+    }
   }
-  
+
+  .header-language-button select{
+    background-color: rgb(22, 20, 43);
+    height: 45px;
+    width: 210px;
+    border-radius: .25em;
+    color: #fff;
+  }

@@ -3,6 +3,7 @@ import ScreenHeading from '../../utilities/ScreenHeading/ScreenHeading';
 import ScrollServices from '../../utilities/ScrollServices';
 import Animations from '../../utilities/Animations';
 import './Projects.css';
+import Footer from '../Footer/Footer';
 
 export default function Projects(props) {
     const [selectedBulletIndex, setSelectedBulletIndex] = useState(0);
@@ -39,8 +40,35 @@ export default function Projects(props) {
         )
     };
 
+    const ResumeHeadingPT = (props) => {
+        return (
+            <div className="projects-heading">
+                <div className='projects-photo'>
+                    {props.projectPhoto}
+                </div>
+                <div className="projects-main-heading">
+                    <div className="heading-bullet"></div>
+                    <span>{props.heading ? props.heading : ""}</span>
+                </div>
+                <div className="projects-heading-description">
+                    <span>{props.description ? props.description : ""}</span>
+                </div>
+                <div className="projects-repository">
+                    <span>Repositorio: <a href={props.repository ? props.repository : ""}>{props.repository ? props.repository : ""}</a></span>
+                </div>
+                <div className="projects-heading-link">
+                    <span>Link: <a href={props.link ? props.link : ""}>{props.link ? props.link : ""}</a></span>
+                </div>
+            </div>
+        )
+    };
+
     const resumeBullets = [
         { label: "Login Project" }
+    ];
+
+    const resumeBulletsPT = [
+        { label: "Projeto de Login" }
     ];
 
     const resumeDetails = [
@@ -51,6 +79,18 @@ export default function Projects(props) {
                 repository={"https://github.com/LucianaMiki/login-frontend"}
                 link={'https://loginlucianamiki.netlify.app/'}
                 description={'A login and register screen'}
+            />
+        </div>
+    ];
+
+    const resumeDetailsPT = [
+        <div className="projects-screen-container" key="loginProject">
+            <ResumeHeadingPT
+                projectPhoto={<img className="projects-login-photo" src={require ('../../assets/Projects/telaLogin.png')} alt='problem loading file'/>}
+                heading={"Projeto de Login"}
+                repository={"https://github.com/LucianaMiki/login-frontend"}
+                link={'https://loginlucianamiki.netlify.app/'}
+                description={'Tela de login e registro'}
             />
         </div>
     ];
@@ -67,7 +107,24 @@ export default function Projects(props) {
     };
 
     const getBullets = () => {
-        return resumeBullets.map((bullet, index) => (
+        return props.isPT ? 
+        resumeBulletsPT.map((bullet, index) => (
+            <div
+                onClick={() => handleCarousal(index)}
+                className={
+                    index === selectedBulletIndex ? "bullet selected-bullet" : "bullet"
+                }
+                key={index}
+            >
+                <img
+                    className="bullet-logo"
+                    src={require(`../../assets/Projects/dot.png`)}
+                    alt="B"
+                />
+                <span className="bullet-label">{bullet.label}</span>
+            </div>
+        ))
+        : resumeBullets.map((bullet, index) => (
             <div
                 onClick={() => handleCarousal(index)}
                 className={
@@ -87,9 +144,17 @@ export default function Projects(props) {
 
     const getResumeScreens = () => {
         return (
+            props.isPT ? 
             <div
                 style={carousalOffsetStyle.style}
-                className="projects-details-carousal"
+                className="resume-details-carousal"
+            >
+                {resumeDetailsPT.map((ResumeDetail) => ResumeDetail)}
+            </div>
+            :
+            <div
+                style={carousalOffsetStyle.style}
+                className="resume-details-carousal"
             >
                 {resumeDetails.map((ResumeDetail) => ResumeDetail)}
             </div>
@@ -106,7 +171,7 @@ export default function Projects(props) {
     return (
         <div className='projects-container screen-container' id={props.id || ""}>
             <div className="projects-content">
-                <ScreenHeading title={"Projects"} subHeading={"My projects"} />
+                {props.isPT ? <ScreenHeading title={"Projetos"} subHeading={"Meus projetos"} /> : <ScreenHeading title={"Projects"} subHeading={"My projects"} />}
                 <div className="projects-card">
                     <div className="projects-bullets">
                         <div className="bullet-container">
@@ -118,6 +183,7 @@ export default function Projects(props) {
                     <div className="projects-bullet-details">{getResumeScreens()}</div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

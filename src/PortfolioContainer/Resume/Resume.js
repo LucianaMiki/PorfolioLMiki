@@ -56,6 +56,12 @@ export default function Resume(props) {
         { skill: "C#", ratingPercentage: 60 },
     ];
 
+    const resumeBulletsPT = [
+        { label: "Educação", logoSrc: 'education.svg' },
+        { label: 'Histórico de trabalho', logoSrc: 'work-history.svg' },
+        { label: 'Habilidades de Programação', logoSrc: 'programming-skills.svg' }
+    ];
+
     const resumeDetails = [
         <div className="resume-screen-container" key="education">
             <ResumeHeading
@@ -100,12 +106,84 @@ export default function Resume(props) {
             <ResumeHeading
                 heading={"IBM"}
                 subHeading={"Cloud Computing Intern"}
-                fromDate={"2021"}
-                toDate={"present"}
+                fromDate={"2020"}
+                toDate={"2021"}
             />
             <div className='experience-description'>
                 <span className='resume-description-text'>
                     Learning about cloud, microservices and tech sales
+                </span>
+            </div>
+        </div>,
+        <div
+            className="resume-screen-container programming-skills-container"
+            key="programming-skills"
+        >
+            {programmingSkillsDetails.map((skill, index) => (
+                <div className="skill-parent" key={index}>
+                    <div className="heading-bullet"></div>
+                    <span>{skill.skill}</span>
+                    <div className="skill-percentage">
+                        <div
+                            style={{ width: skill.ratingPercentage + "%" }}
+                            className="active-percentage-bar"
+                        ></div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    ];
+
+    const resumeDetailsPT = [
+        <div className="resume-screen-container" key="education">
+            <ResumeHeading
+                heading={"Fatec Mogi das Cruzes"}
+                subHeading={"ANÁLISE E DESENVOLVIMENTO DE SISTEMAS"}
+                fromDate={"2019"}
+                toDate={"2022"}
+            />
+            <ResumeHeading
+                heading={"Etec Presidente Vargas"}
+                subHeading={"Ensino Médio"}
+                fromDate={"2016"}
+                toDate={"2018"}
+            />
+        </div>,
+        <div className="resume-screen-container" key="work-experience">
+            <ResumeHeading
+                heading={"IBM"}
+                subHeading={"Desenvolvedora de AplicaçÕes"}
+                fromDate={"2021"}
+                toDate={"presente"}
+            />
+            <div className='experience-description'>
+                <span className='resume-description-text'>
+                    Trabalhando como desenvolvedor front-end para aplicações web e mobile, corrigindo bugs e implementando novas funcionalidades
+                </span>
+            </div>
+
+            <div className='experience-description'>
+                <span className='resume-description-text'>
+                    - Trabalhando em um aplicativo móvel para o banco Banco do Brasil com React
+                </span>
+                <br />
+                <span className='resume-description-text'>
+                    - Trabalhando em um aplicativo web para a Petrobras com Angular e C#
+                </span>
+                <br />
+                <span className='resume-description-text'>
+                    - Trabalhando em um aplicativo móvel e web para o banco Bradesco com Angular
+                </span>
+            </div>
+            <ResumeHeading
+                heading={"IBM"}
+                subHeading={"Estagiária de computação cloud"}
+                fromDate={"2020"}
+                toDate={"2021"}
+            />
+            <div className='experience-description'>
+                <span className='resume-description-text'>
+                    Aprendendo sobre nuvem, microsserviços e vendas de tecnologia
                 </span>
             </div>
         </div>,
@@ -140,7 +218,24 @@ export default function Resume(props) {
     };
 
     const getBullets = () => {
-        return resumeBullets.map((bullet, index) => (
+        return props.isPT ? 
+        resumeBulletsPT.map((bullet, index) => (
+            <div
+                onClick={() => handleCarousal(index)}
+                className={
+                    index === selectedBulletIndex ? "bullet selected-bullet" : "bullet"
+                }
+                key={index}
+            >
+                <img
+                    className="bullet-logo"
+                    src={require(`../../assets/Resume/${bullet.logoSrc}`)}
+                    alt="B"
+                />
+                <span className="bullet-label">{bullet.label}</span>
+            </div>
+        ))
+        : resumeBullets.map((bullet, index) => (
             <div
                 onClick={() => handleCarousal(index)}
                 className={
@@ -160,6 +255,14 @@ export default function Resume(props) {
 
     const getResumeScreens = () => {
         return (
+            props.isPT ? 
+            <div
+                style={carousalOffsetStyle.style}
+                className="resume-details-carousal"
+            >
+                {resumeDetailsPT.map((ResumeDetail) => ResumeDetail)}
+            </div>
+            :
             <div
                 style={carousalOffsetStyle.style}
                 className="resume-details-carousal"
@@ -179,7 +282,7 @@ export default function Resume(props) {
     return (
         <div className='resume-container screen-container' id={props.id || ""}>
             <div className="resume-content">
-                <ScreenHeading title={"Resume"} subHeading={"My formal Bio Details"} />
+                {props.isPT ? <ScreenHeading title={"Currículo"} subHeading={"Meus detalhes"} /> : <ScreenHeading title={"Resume"} subHeading={"My formal Bio Details"} />}
                 <div className="resume-card">
                     <div className="resume-bullets">
                         <div className="bullet-container">
