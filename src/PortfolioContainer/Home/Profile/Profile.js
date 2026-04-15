@@ -65,7 +65,7 @@ export default function Profile(props) {
                                 {props.isPT ?
                                     <span>Construindo aplicações com operações front-end e back-end.</span>
                                     :
-                                    <span>Building applicationd with front and back end operations.</span>
+                                    <span>Building applications with front and back end operations.</span>
                                 }
                             </span>
                         </span>
